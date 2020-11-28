@@ -11,6 +11,7 @@ pipeline{
 			echo "testing Docker image..."
 			app.inside {
 				sh 'echo "Test passed"'
+			}
 			echo "Beginning SonarQube tests..."
 			environment {
      				   scannerHome = tool 'SonarQubeScanner'
