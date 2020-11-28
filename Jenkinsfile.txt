@@ -1,0 +1,14 @@
+pipeline{
+	agent any
+	stages {
+		stage('Build') {
+			echo "${env.JOB_NAME} build ${env.BUILD_NUMBER} beginning on ${env.JENKINS_URL}"
+		}
+		stage('Test'){
+			echo "Beginning tests..."
+		}
+		stage('Deploy'){
+			echo "Deploying on kubernetes and pushing image to DockerHub"
+		}
+	}
+}
