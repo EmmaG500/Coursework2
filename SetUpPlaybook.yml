@@ -1,0 +1,55 @@
+- name: A sample playbook header
+  hosts: localhost
+  user: ubuntu
+  become: yes
+
+  vars:
+    myPath: “/home/ubuntu/”
+
+  tasks:
+ 
+  - name: Update Package Manager
+    apt:
+      update_cache: yes 
+ 
+  - name: Install apt-transport-https
+    apt:
+      name={{ item }}
+    with-items:
+      - apt-transport-https
+
+  - name: Get APT Key
+    shell:
+       cmd: curl -s https://packages.cloud.google.com/apt-key.gpg | sudo apt-key add -
+
+  - name: TBD
+    shell:
+       cmd: echo "deb https://apt.kubernetes.io/kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kuberneters.list
+  
+  - name: Update Package Manager
+    apt:
+      update_cache: yes
+
+  - name: Install Kubectl
+    apt:
+      update_cache: yes
+      name: kubectl
+
+  - name: Install MiniKube
+    shell:
+       cmd: curl -Lo minikube https://storage.google.apis.com/minikube/releases/latest/minikube-linux-amd64
+
+  - name: Change File Ownership
+      file:
+       path: ./minikube
+       owner: ubuntu
+       group: ubuntu
+       mode: '777'
+
+  - name: Move MiniKube
+    shell:
+       cmd: sudo mv minikube /usr/local/bin/
+
+  - name: Start MiniKube
+    shell:
+       cmd: minikube start
