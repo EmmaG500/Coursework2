@@ -1,4 +1,4 @@
-- name: A sample playbook header
+- name: set up kubernetes and minikube
   hosts: localhost
   user: ubuntu
   become: yes
@@ -22,7 +22,7 @@
     shell:
        cmd: curl -s https://packages.cloud.google.com/apt-key.gpg | sudo apt-key add -
 
-  - name: TBD
+  - name: Adding source to package manager
     shell:
        cmd: echo "deb https://apt.kubernetes.io/kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kuberneters.list
   
