@@ -39,12 +39,13 @@
     shell:
        cmd: curl -Lo minikube https://storage.google.apis.com/minikube/releases/latest/minikube-linux-amd64
 
-  - name: Change File Ownership
-      file:
-       path: ./minikube
-       owner: ubuntu
-       group: ubuntu
-       mode: '777'
+  - name: Change file ownership
+    file:
+      path: ./minikube
+      owner: ubuntu
+      group: ubuntu
+      mode: '777'
+
 
   - name: Move MiniKube
     shell:
