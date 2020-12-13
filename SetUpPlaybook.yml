@@ -35,7 +35,7 @@
 
   - name: Install MiniKube
     shell:
-       cmd: curl -Lo minikube https://storage.google.apis.com/minikube/releases/latest/minikube-linux-amd64
+       cmd: curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 
   - name: Change file ownership
     file:
