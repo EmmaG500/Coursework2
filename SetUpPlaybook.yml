@@ -13,10 +13,8 @@
       update_cache: yes 
  
   - name: Install apt-transport-https
-    apt:
-      name={{ item }}
-    with-items:
-      - apt-transport-https
+    shell:
+       cmd: apt-get install -y apt-transport-https
 
   - name: Get APT Key
     shell:
