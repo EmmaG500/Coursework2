@@ -14,7 +14,7 @@
 
   - name: Create Deployment
     shell:
-      cmd: kubectl create deployment devopscw2 --image=emmag500/devopscw2:v1
+      cmd: kubectl create deployment devopscw2 --image=emmag500/server_app:v1
 
   - name: Create Service
     shell:
