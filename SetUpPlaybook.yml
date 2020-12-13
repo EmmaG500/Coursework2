@@ -22,7 +22,7 @@
 
   - name: Adding source to package manager
     shell:
-       cmd: echo "deb https://apt.kubernetes.io/kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+       cmd: echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
   
   - name: Update Package Manager
     apt:
