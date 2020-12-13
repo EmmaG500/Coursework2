@@ -22,4 +22,4 @@
 
   - name: Scale Deployments
     shell:
-      cmd: kubectl scale deployments/devopscw2 --replicas=8
+      cmd: kubectl scale deployments/devopscw2 --replicas=3
