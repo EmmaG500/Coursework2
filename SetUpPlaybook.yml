@@ -50,5 +50,6 @@
        cmd: sudo mv minikube /usr/local/bin/
 
   - name: Start MiniKube
+    become: no
     shell:
        cmd: minikube start
