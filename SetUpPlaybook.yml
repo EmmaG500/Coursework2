@@ -18,7 +18,7 @@
 
   - name: Get APT Key
     shell:
-       cmd: curl -s https://packages.cloud.google.com/apt-key.gpg | apt-key add -
+       cmd: curl -s https://packages.cloud.google.com/apt-key.gpg | sudo apt-key add -
 
   - name: Adding source to package manager
     shell:
