@@ -1,0 +1,25 @@
+- name: deploy, enable scaling
+  hosts: localhost
+  user: ubuntu
+  become: yes
+
+  vars:
+    myPath: “/home/ubuntu/”
+
+  tasks:
+ 
+  - name: Update Package Manager
+    apt:
+      update_cache: yes
+
+  - name: Create Deployment
+    shell:
+      cmd: kubectl create deployment devopscw2 --image=emmag500/devopscw2:v1
+
+  - name: Create Service
+    shell:
+      cmd: kubectl expose deployment/devopscw2 --type="NodePort" --port8080 --name node-port-service
+
+  - name: Scale Deployments
+    shell:
+      cmd: kubectl scale deployments/devopscw2 --replicas=8
