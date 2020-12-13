@@ -13,6 +13,7 @@
       update_cache: yes
 
   - name: Create Deployment
+    become: no
     shell:
       cmd: kubectl create deployment devopscw2 --image=docker.io/emmag500/server_app:v1
 
