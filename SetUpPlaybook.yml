@@ -8,6 +8,10 @@
 
   tasks:
  
+  - name: Update Package Manager
+    apt:
+      update_cache: yes
+ 
   - name: Install apt-transport-https
     shell:
        cmd: apt-get install -y apt-transport-https
