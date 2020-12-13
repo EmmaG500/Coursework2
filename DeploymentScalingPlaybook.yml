@@ -19,7 +19,7 @@
 
   - name: Create Service
     shell:
-      cmd: kubectl expose deployment/devopscw2 --type="NodePort" --port8080 --name node-port-service
+      cmd: kubectl expose deployment/devopscw2 --type="NodePort" --port 8080 --name node-port-service
 
   - name: Scale Deployments
     shell:
