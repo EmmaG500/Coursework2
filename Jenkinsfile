@@ -27,7 +27,7 @@ pipeline{
         		}
     		}
 		stage('Deploy'){
-			
+			  echo 'Deploying application to kubernetes...'			
 			}
 		}
 	}
