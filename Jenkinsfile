@@ -2,15 +2,19 @@ pipeline{
 	agent any
 	stages {
 		stage('Build') {
-			echo "${env.JOB_NAME} build ${env.BUILD_NUMBER} beginning on ${env.JENKINS_URL}"
-			echo "building Docker image..."
-			app = docker.build("./Dockerfile")
+			steps {
+				echo "${env.JOB_NAME} build ${env.BUILD_NUMBER} beginning on ${env.JENKINS_URL}"
+				echo "building Docker image..."
+				app = docker.build("./Dockerfile")
+			}
 		}
 		stage ('Push Image') {
-			echo 'Pushing Image...'
-        		docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            			app.push("${env.BUILD_NUMBER}")
-            			app.push("latest")
+			steps {
+				echo 'Pushing Image...'
+        			docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+            				app.push("${env.BUILD_NUMBER}")
+            				app.push("latest")
+			}
 		}
 		stage('Test'){
 			echo "Beginning SonarQube tests..."
