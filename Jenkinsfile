@@ -23,8 +23,7 @@ pipeline {
             environment {
                 scannerHome = tool 'SonarQubeScanner'
             }
-            steps {
-		sh "docker pull docker.artifactory.company.com/util-sonar-runner:latest"    
+            steps {   
                 withSonarQubeEnv('sonarqube') {
                     sh "${scannerHome}/bin/sonar-scanner -X"
                 }
