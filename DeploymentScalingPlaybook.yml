@@ -18,9 +18,11 @@
       cmd: kubectl create deployment devopscw2 --image=docker.io/emmag500/server_app:v1
 
   - name: Create Service
+    become: no
     shell:
       cmd: kubectl expose deployment/devopscw2 --type="NodePort" --port 8080 --name node-port-service
 
   - name: Scale Deployments
+    become: no
     shell:
       cmd: kubectl scale deployments/devopscw2 --replicas=4
