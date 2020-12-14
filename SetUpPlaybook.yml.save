@@ -1,0 +1,17 @@
+- name: kubectl and minikube install + start
+  hosts: localhost
+  user: ubuntu
+  become: yes
+
+  vars:
+    myPath: “/home/ubuntu/”
+
+  tasks:
+ 
+  - name: Update Package Manager
+      apt:
+        update_cache: yes 
+
+  - name: Install apt-transport-https
+     
+
