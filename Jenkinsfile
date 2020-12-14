@@ -2,7 +2,9 @@ pipeline{
 	agent any
 	stages {
 		stage('Clone repo') {
-			checkout scm
+			steps {
+				checkout scm
+			}
 		}
 		stage('Build') {
 			steps {
