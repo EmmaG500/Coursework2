@@ -5,7 +5,7 @@ pipeline{
 			steps {
 				echo "${env.JOB_NAME} build ${env.BUILD_NUMBER} beginning on ${env.JENKINS_URL}"
 				echo "building Docker image..."
-				app = docker.build("./Dockerfile")
+				app = docker.build("emmag500/server_app")
 			}
 		}
 		stage ('Push Image') {
