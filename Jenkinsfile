@@ -3,6 +3,11 @@ def app
 pipeline {
     agent any
     stages {
+	stage('Clone Repo'){
+		steps {
+ 			checkout scm
+		}
+	}
         stage('build docker image and push to dockerhub') {
             steps {
                 script {
@@ -19,6 +24,7 @@ pipeline {
                 scannerHome = tool 'SonarQubeScanner'
             }
             steps {
+		sh "docker pull docker.artifactory.company.com/util-sonar-runner:latest"    
                 withSonarQubeEnv('sonarqube') {
                     sh "${scannerHome}/bin/sonar-scanner -X"
                 }
