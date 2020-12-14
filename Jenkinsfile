@@ -1,7 +1,6 @@
 pipeline{
 	agent any
 	stages {
-		stage('
 		stage('Build') {
 			echo "${env.JOB_NAME} build ${env.BUILD_NUMBER} beginning on ${env.JENKINS_URL}"
 			echo "building Docker image..."
