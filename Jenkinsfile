@@ -5,7 +5,7 @@ node {
         checkout scm
     }
     stage('Build image') {
-        app = docker.build("rhamill22/node_web_apP")
+        app = docker.build("emmag500/server_app")
     }
     stage('Test image') {
         app.inside{
