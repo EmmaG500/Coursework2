@@ -1,3 +1,5 @@
+set +e
+
 def app
 
 pipeline {
