@@ -3,7 +3,7 @@ def app
 pipeline {
     agent any
     stages {
-        stage('Build and upload to docker') {
+        stage('build docker image and push to dockerhub') {
             steps {
                 script {
                     app = docker.build("emmag500/server_app")
@@ -14,14 +14,17 @@ pipeline {
                 }
             }
         }
-	stage('Sonarqube Testing') {
+	stage('Testing with SonarQube') {
             environment {
-                scannerHome = tool 'SonarQubeScanner'
+                scannerHome = tool 'SonarQube'
             }
             steps {
                 withSonarQubeEnv('sonarqube') {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
+		timeout(time: 10, unit: 'MINUTES') {
+            	    waitForQualityGate abortPipeline: true
+        	}
             }
         }
     }
