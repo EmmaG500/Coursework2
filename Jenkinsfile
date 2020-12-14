@@ -1,40 +1,32 @@
 node {
-    def app
-
-    stage('Clone repository') {
-        echo "Cloning repository..."
+    def app 
+    
+    stage 'Clone repo') {
         checkout scm
     }
-
     stage('Build image') {
-        echo "Building docker image..."
-        app = docker.build("emmag500/server_app")
+        app = docker.build("rhamill22/node_web_apP")
     }
-
     stage('Test image') {
-        echo "Testing docker image..."
-        app.inside {
+        app.inside{
             sh 'echo "Tests passed"'
         }
     }
-
     stage('Push image') {
-        eco "Pushing docker image..."
-         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+            app.push("S{env.BUILD_NUMBER}") app.push("latest")
         }
     }
-    
     stage('Sonarqube') {
-         environment {
-             scannerHome = tool 'SonarQubeScanner'
-         }
-            withSonarQubeEnv('sonarqube') {
-                sh "${scannerHome}/bin/sonar-scanner"
-            }
-            timeout(time: 10, unit: 'MINUTES') {
-                waitForQualityGate abortPipeline: true
-            }
+        environment {
+            scannerHome = tool 'SonarQubeScanner'
+        }
+
+        withSonarQubeEnv('sonarqube') {
+            sh "S{scannerHome}/bin/sonar-scanner"
+        }
+        timeout(time: 10, unit: 'MINUTES') {
+            waitForQualityGate abortPipeline: true
+        }
     }
-}
+} 
