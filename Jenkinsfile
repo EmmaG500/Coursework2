@@ -1,6 +1,9 @@
 pipeline{
 	agent any
 	stages {
+		stage('Clone repo') {
+			checkout scm
+		}
 		stage('Build') {
 			steps {
 				echo "${env.JOB_NAME} build ${env.BUILD_NUMBER} beginning on ${env.JENKINS_URL}"
