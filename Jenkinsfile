@@ -1,33 +1,28 @@
-node {
-    def app 
-    
-    stage ('Clone repo') {
-        checkout scm
-    }
-    stage('Build image') {
-        app = docker.build("emmag500/server_app")
-    }
-    stage('Test image') {
-        app.inside{
-            sh 'echo "Tests passed"'
-        }
-    }
-    stage('Push image') {
-        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+def app
 
-            app.push("latest")
+pipeline {
+    agent any
+    stages {
+        stage('Build and upload to docker') {
+            steps {
+                script {
+                    app = docker.build("emmag500/server_app")
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+                        app.push("${env.BUILD_NUMBER}")
+                        app.push("latest")
+                   }
+                }
+            }
+        }
+	stage('Sonarqube Testing') {
+            environment {
+                scannerHome = tool 'SonarQubeScanner'
+            }
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
         }
     }
-    stage('Sonarqube') {
-        environment {
-            scannerHome = tool 'SonarQubeScanner'
-        }
-
-        withSonarQubeEnv('sonarqube') {
-            sh "S{scannerHome}/bin/sonar-scanner"
-        }
-        timeout(time: 10, unit: 'MINUTES') {
-            waitForQualityGate abortPipeline: true
-        }
-    }
-} 
+}
