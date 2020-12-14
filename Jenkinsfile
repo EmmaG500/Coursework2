@@ -3,11 +3,6 @@ def app
 pipeline {
     agent any
     stages {
-	stage('Clone Repo'){
-		steps {
- 			checkout scm
-		}
-	}
         stage('build docker image and push to dockerhub') {
             steps {
                 script {
@@ -29,5 +24,10 @@ pipeline {
                 }
             }
         }
+	    stage('Deploying to Kubernetes'){
+		    steps{
+			    echo "deploying..."
+		    }
+	    }
     }
 }
