@@ -1,5 +1,8 @@
 def app
 
+sonar.login ='admin'
+sonar.password = 'admin'
+
 pipeline {
     agent any
     stages {
