@@ -32,8 +32,6 @@ pipeline{
 		    app.push("${env.BUILD_NUMBER}")
 		    app.push("latest")
 		}
-	    }
-	}
 		stage('Test'){
 			echo "Beginning SonarQube tests..."
 			environment {
@@ -53,4 +51,4 @@ pipeline{
 		}
 	}
 }
-}
+
