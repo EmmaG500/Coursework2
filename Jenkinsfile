@@ -33,7 +33,7 @@ pipeline {
 	    stage('Deploying to Kubernetes'){
 		    steps{
 			    echo "deploying..."
-			    ssh "root@emmag"
+			    sh "kubectl set image deployment/devopscw2 devopscw2=emmag/server_app:latest"
 		    }
 	    }
     }
