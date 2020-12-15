@@ -1,4 +1,10 @@
 def app
+def remote = [:]
+remote.name = 'emmag'
+remote.host = '54.208.108.210'
+remote.user = 'root'
+remote.password = 'test'
+remote.allowAnyHosts = true
 
 pipeline {
     agent any
@@ -27,6 +33,9 @@ pipeline {
 	    stage('Deploying to Kubernetes'){
 		    steps{
 			    echo "deploying..."
+			    script {
+				    
+			    }
 		    }
 	    }
     }
