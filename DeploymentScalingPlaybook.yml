@@ -15,7 +15,7 @@
   - name: Create Deployment
     become: no
     shell:
-      cmd: kubectl create deployment devopscw2 --image=docker.io/emmag500/server_app:1.0
+      cmd: kubectl create deployment devopscw2 --image=docker.io/emmag500/server_app:v1
 
   - name: Create Service
     become: no
