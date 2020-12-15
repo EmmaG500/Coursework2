@@ -8,11 +8,11 @@ pipeline {
 			checkout scm
 		 }
 	}
-	    stage ('Build Image') {
-		    script {
-			    app = docker.build("emmag500/server_app:${env.BUILD_NUMBER}")
-		    }
-	    }
+	stage ('Build Image') {
+		 script {
+			 app = docker.build("emmag500/server_app:${env.BUILD_NUMBER}")
+		 }
+	}
         stage('push to dockerhub') {
             steps {
                 script {
