@@ -33,8 +33,10 @@ pipeline {
 	    stage('Deploying to Kubernetes'){
 		    steps{
 			    echo "deploying..."
-			    sshCommand remote: remote, command: 'kubectl set image deployments/devopscw2 devopscw2=emmag500/server_app:${env.BUILD_NUMBER]'
-			    sshCommand remote: remote, command: './multiple_users.sh'
+			    script {
+				    kubectl set image deployments/devopscw2 devopscw2=emmag500/server_app:${env.BUILD_NUMBER}
+				    ./multiple_users.sh
+			    }
 		    }
 	    }
     }
