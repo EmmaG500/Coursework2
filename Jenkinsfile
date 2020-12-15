@@ -29,7 +29,7 @@ pipeline {
 			    echo "deploying..."
 			    script {
 				    sh "ssh ubuntu@54.208.108.210 \
-				    	kubectl get deployments"
+				    	kubectl set image deployments/devopscw2 server-app-qcl4t=emmag500/server_app:${env.BUILD_NUMBER}"
 			    }
 		    }
 	    }
