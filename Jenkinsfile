@@ -3,11 +3,11 @@ def app
 pipeline {
     agent any
     stages {
-	    stage('Checkout scm'){
-		    steps {
-		    checkout scm
-		    }
-		}
+	stage('Checkout scm'){
+		steps {
+			checkout scm
+		 }
+	}
         stage('build docker image and push to dockerhub') {
             steps {
                 script {
