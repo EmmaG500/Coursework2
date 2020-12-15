@@ -9,9 +9,11 @@ pipeline {
 		 }
 	}
 	stage ('Build Image') {
-		 script {
+		steps {
+			script {
 			 app = docker.build("emmag500/server_app:${env.BUILD_NUMBER}")
-		 }
+		 	}
+		}
 	}
         stage('push to dockerhub') {
             steps {
