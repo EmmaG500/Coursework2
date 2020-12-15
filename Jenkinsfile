@@ -33,11 +33,9 @@ pipeline {
 	    stage('Deploying to Kubernetes'){
 		    steps{
 			    echo "deploying..."
-			    container('kubectl'){
 			    sh "kubectl get pods"
 			    sh "kubectl set image deployments/devopscw2 devopscw2=emmag500/server_app:${env.BUILD_NUMBER}"
 			    sh "./multiple_users.sh"
-			    }
 		    }
 	    }
     }
