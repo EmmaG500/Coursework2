@@ -1,7 +1,7 @@
 def app
 def remote = [:]
 remote.name = 'emmag'
-remote.host = '172.31.59.1720'
+remote.host = '172.31.59.172'
 remote.user = 'root'
 remote.password = 'test'
 remote.allowAnyHosts = true
